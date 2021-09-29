@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chen.mapper.OrderMapper">
+   <select id="findOrderList" resultType="com.chen.entity.Order">
+       select * from t_order
+   </select>
+
+    <select id="findById" resultType="com.chen.entity.Order" parameterType="long" useCache="false">
+        select * from t_order where id = #{id}
+    </select>
+
+    <select id="findByUsername" resultType="com.chen.entity.Order" parameterType="String" useCache="false">
+        select * from t_order where username like concat('%',#{username},'%')
+    </select>
+
+    <select id="findByVo" resultType="com.chen.entity.Order" parameterType="com.chen.vo.OrderVo">
+        select * from t_order where username = "${username}"
+    </select>
+
+    <select id="pageQuery" resultType="order" parameterType="org.apache.ibatis.session.RowBounds" useCache="true">
+        select * from t_order
+    </select>
+
+    <delete id="deleteOne" parameterType="long">
+        delete from t_order where id = 1
+    </delete>
+</mapper>

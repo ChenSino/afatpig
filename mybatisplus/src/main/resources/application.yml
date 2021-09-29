@@ -1,0 +1,10 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: mybatisplus
+  datasource:
+    url: jdbc:mysql:///mybatis_p
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
