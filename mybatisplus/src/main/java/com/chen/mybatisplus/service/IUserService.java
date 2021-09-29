@@ -1,7 +1,7 @@
-package com.example.mybatisplus.service;
+package com.chen.mybatisplus.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.example.mybatisplus.entity.User;
+import com.chen.mybatisplus.entity.User;
 
 /**
  * @author afatpig

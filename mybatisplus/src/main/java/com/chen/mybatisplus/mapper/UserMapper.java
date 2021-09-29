@@ -1,7 +1,7 @@
-package com.example.mybatisplus.mapper;
+package com.chen.mybatisplus.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.example.mybatisplus.entity.User;
+import com.chen.mybatisplus.entity.User;
 
 /**
  * @author afatpig
