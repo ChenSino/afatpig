@@ -1,0 +1,17 @@
+#### 使用mycat
+spring:
+  datasource:
+    dynamic:
+      primary: master
+      strict: false
+      datasource:
+        master:
+          url: jdbc:p6spy:mysql://localhost:8066/mybatis_p
+          username: root
+          password: 123456
+          driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+mybatis-plus:
+  type-enums-package: com.chen.mybatisplus.entity.enums
+logging:
+  level:
+    com.chen: debug

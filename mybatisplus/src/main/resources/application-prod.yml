@@ -1,0 +1,28 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: mybatisplus
+  datasource:
+    dynamic:
+      primary: master
+      strict: false
+      datasource:
+        master:
+          #    url: jdbc:mysql:///mybatis_p
+          #    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+          url: jdbc:p6spy:mysql://localhost:3001/mybatis_p
+          username: root
+          password: root
+          driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+        slave_1:
+          #    url: jdbc:mysql:///mybatis_p
+          url: jdbc:p6spy:mysql://localhost:3002/mybatis_p
+          username: queryUser
+          password: 123456
+          driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+mybatis-plus:
+  type-enums-package: com.chen.mybatisplus.entity.enums
+logging:
+  level:
+    com.chen: debug

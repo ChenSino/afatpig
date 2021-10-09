@@ -1,6 +1,5 @@
 package com.chen.mybatisplus.controller;
 
-import com.baomidou.dynamic.datasource.annotation.DS;
 import com.chen.mybatisplus.entity.User;
 import com.chen.mybatisplus.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,7 @@ public class UserController {
     private IUserService userService;
 
     @GetMapping("/slave-list")
-    @DS("slave_1")
+//    @DS("slave_1")
     public List<User> userListSlave() {
         return userService.list();
     }

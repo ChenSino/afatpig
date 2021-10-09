@@ -1,9 +1,11 @@
 package com.chen.base;
 
-import org.hamcrest.core.Is;
 import org.junit.Test;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * @author afatpig
