@@ -1,7 +1,7 @@
 package com.chen.base.pool;
 
 /**
- * @author afatpig
+ * @author chenkun
  * @date 2021/10/9 上午10:09
  */
 public class IntegerPoolTest {
