@@ -19,10 +19,10 @@ public class HelloController {
     @Autowired
     private IOrderService orderService;
 
-    @RequestMapping("login")
+/*    @RequestMapping("login")
     public String login() {
         return "ok";
-    }
+    }*/
 
     @RequestMapping("userinfo")
     public String getUserInfo() {
