@@ -1,5 +1,6 @@
 package com.chen.configuration;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -11,9 +12,12 @@ import org.springframework.security.config.http.SessionCreationPolicy;
  * @date 2021/10/12 下午5:24
  */
 @Configuration
+@Slf4j
+//@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        log.debug("进入自定义config");
         http
                 .csrf()
                 .disable()
@@ -34,19 +38,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         invalidSessionUrl("/timeOut")
                 //登陆配置信息
                 .and()
-                .formLogin()
-                .loginPage("/login")
-                .successForwardUrl("/index")
-                .permitAll()
-                //权限不足时转向403页面
-                .and()
-                .exceptionHandling()
-                .accessDeniedPage("/403")
-                //配置登出处理
-                .and()
-                .logout()
-                .invalidateHttpSession(true)
-                .permitAll()
+                .formLogin(form -> {
+                    form.loginPage("/login").permitAll();
+                })
+//                .loginPage("/login")
+//                .successForwardUrl("/index")
+//                .permitAll()
+//                //权限不足时转向403页面
+//                .and()
+//                .exceptionHandling()
+//                .accessDeniedPage("/403")
+//                //配置登出处理
+//                .and()
+//                .logout()
+//                .invalidateHttpSession(true)
+//                .permitAll()
         ;
     }
 }
