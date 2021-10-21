@@ -1,6 +1,9 @@
 server:
   port: 8080
 spring:
+  self:
+    name: chenkun
+    age: 13
   application:
     name: spring-cache
   redis:

@@ -4,5 +4,11 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <bean id="sonoscape" class="com.chen.ioc.bean.SonoBean" scope="singleton"/>
+    <bean id="sonoscape" class="com.chen.ioc.bean.SonoBean" scope="singleton" init-method="getAge">
+        <property name="age" value="3"></property>
+        <property name="name" value="tom"></property>
+    </bean>
+    <!--    <bean id="bananaBean" class="com.chen.ioc.bean.BananaBean" scope="singleton"/>-->
+    <bean id="myBeanPostProcessor" class="com.chen.ioc.MyBeanPostProcessor" scope="singleton"/>
+    <bean id="banana" class="com.chen.ioc.bean.MyFactoryBean" scope="singleton"/>
 </beans>

@@ -1,6 +1,7 @@
 package com.chen.ioc;
 
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -12,7 +13,7 @@ public class Runner {
 
     @Test
     public void protocal() {
-        ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
-        classPathXmlApplicationContext.close();
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        Object sonoscape = applicationContext.getBean("banana");
     }
 }
