@@ -3,9 +3,10 @@ package com.chen.springcache;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 
 @SpringBootApplication
-//@ConfigurationPropertiesScan(basePackages = {"com.chen.springcache.properties"})
+@ConfigurationPropertiesScan(basePackages = {"com.chen.springcache.properties"})
 public class SpringCacheApplication {
 
     @Value("${spring.self.name}")
