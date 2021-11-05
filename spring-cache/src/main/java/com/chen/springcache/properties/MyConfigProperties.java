@@ -13,5 +13,5 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class MyConfigProperties {
     private String name;
 
-    private int age;
+    private String addr;
 }
