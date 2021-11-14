@@ -11,6 +11,8 @@ public class MyClassLoader extends ClassLoader {
     public static void main(String[] args) {
         try {
             new MyClassLoader().findClass("jvm.Hello").newInstance(); // 加载并初始化Hello类
+            //顺便测一下两个类加载器加载同一个类，得到的是false
+            System.out.println(new MyClassLoader().findClass("jvm.Hello") == new MyClassLoader().findClass("jvm.Hello"));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -22,7 +24,7 @@ public class MyClassLoader extends ClassLoader {
 
     @Override
     protected Class<?> findClass(String name) throws ClassNotFoundException {
-
+        //测试自定义类，简单的测试用base64加密
         String helloBase64 = "yv66vgAAADQAHwoABgARCQASABMIABQKABUAFgcAFwcAGAEABjxpbml0PgEAAygpVgEABENvZGUBAA9MaW5lTnVtYmVyVGFibGUBABJMb2N" +
                 "hbFZhcmlhYmxlVGFibGUBAAR0aGlzAQALTGp2bS9IZWxsbzsBAAg8Y2xpbml0PgEAClNvdXJjZUZpbGUBAApIZWxsby5qYXZhDAAHAAgHABkMABoAGwEAGEhlb" +
                 "GxvIENsYXNzIEluaXRpYWxpemVkIQcAHAwAHQAeAQAJanZtL0hlbGxvAQAQamF2YS9sYW5nL09iamVjdAEAEGphdmEvbGFuZy9TeXN0ZW0BAANvdXQBABVMamF2" +

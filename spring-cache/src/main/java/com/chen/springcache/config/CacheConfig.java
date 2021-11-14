@@ -4,7 +4,6 @@ import com.chen.springcache.entity.User;
 import com.chen.springcache.properties.MyConfigProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,11 +18,11 @@ import org.springframework.context.annotation.Configuration;
 @Slf4j
 public class CacheConfig {
 
-    @Value("${spring.self.name}")
+    //    @Value("${spring.self.name}")
     private String name;
 
-    @Value("${spring.self.age}")
-    private int age;
+    //    @NacosValue(value = "${spring.self.age}", autoRefreshed = true)
+    private String addr;
 
     @Autowired
     private MyConfigProperties myConfigProperties;
@@ -32,7 +31,7 @@ public class CacheConfig {
     public User getUser() {
         System.out.println(myConfigProperties);
         log.warn(name);
-        log.warn("age,{}", age);
+        log.warn("age,{}", addr);
         return new User();
     }
 }

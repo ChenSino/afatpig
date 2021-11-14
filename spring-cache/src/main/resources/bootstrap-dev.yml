@@ -1,0 +1,4 @@
+nacos:
+  config:
+    namespace: sono-dev
+    file-extension: yml

@@ -1,13 +1,21 @@
 package com.chen.springcache.controller;
 
+import com.alibaba.nacos.api.annotation.NacosInjected;
+import com.alibaba.nacos.api.exception.NacosException;
+import com.alibaba.nacos.api.naming.NamingService;
+import com.alibaba.nacos.api.naming.pojo.Instance;
 import com.chen.springcache.entity.User;
+import com.chen.springcache.properties.BomProperties;
 import com.chen.springcache.service.HelloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * @author chenkun
@@ -15,11 +23,29 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2021/10/13 下午4:33
  */
 @RestController
-@RequestMapping("/")
+//@RequestMapping("/")
 public class HelloController {
-
+    @NacosInjected
+    private NamingService namingService;
     @Autowired
     private HelloService helloService;
+
+    @Autowired
+    private BomProperties bomProperties;
+    //    @NacosValue(value = "${spring.self.name}", autoRefreshed = true)
+    public String count;
+
+
+    @RequestMapping("getInstance")
+    public List<Instance> get(@RequestParam String serviceName) throws NacosException {
+        return namingService.getAllInstances(serviceName);
+    }
+
+
+    @RequestMapping("get")
+    public String goG() {
+        return count;
+    }
 
     @RequestMapping("hello")
     public String sayHello(@RequestParam("username") String username) {
@@ -74,4 +100,8 @@ public class HelloController {
         return (User) redisTemplate.opsForValue().get("user");
     }
 
+    @GetMapping("testProp")
+    public String getProperties() {
+        return bomProperties.toString();
+    }
 }

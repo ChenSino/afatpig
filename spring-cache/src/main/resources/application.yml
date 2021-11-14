@@ -1,0 +1,10 @@
+spring:
+  redis:
+    host: localhost
+    password: sonoscape
+    database: 1
+    port: 6379
+sono:
+  bom:
+    address: asgsag
+    uuid: 111111

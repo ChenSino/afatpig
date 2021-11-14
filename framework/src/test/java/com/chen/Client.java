@@ -1,5 +1,6 @@
 package com.chen;
 
+import com.alibaba.fastjson.JSON;
 import com.chen.entity.Order;
 import com.chen.vo.OrderVo;
 import org.apache.ibatis.io.Resources;
@@ -82,5 +83,12 @@ public class Client {
         System.out.println(orders1.size());
         sqlSession.close();
         sqlSession2.close();
+    }
+
+    @Test
+    public void testJson() {
+        String str = "abcd";
+        String s = JSON.toJSONString(str);
+        System.out.println(s);
     }
 }
