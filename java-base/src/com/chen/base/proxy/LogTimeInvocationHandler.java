@@ -19,6 +19,7 @@ public class LogTimeInvocationHandler implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        System.out.println(proxy.getClass());
         for (int i = 0; i < args.length; i++) {
             System.out.println("参数：" + args[i]);
         }

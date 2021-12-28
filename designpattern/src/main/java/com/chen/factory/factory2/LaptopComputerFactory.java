@@ -1,4 +1,4 @@
-package com.chen.factory2;
+package com.chen.factory.factory2;
 
 /**
  * @author chenkun

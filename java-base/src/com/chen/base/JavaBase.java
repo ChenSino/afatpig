@@ -1,8 +1,9 @@
 package com.chen.base;
 
+import com.chen.base.proxy.Executor;
 import org.junit.Test;
 
-import java.util.*;
+import java.util.LinkedList;
 
 /**
  * @author afatpig
@@ -40,4 +41,18 @@ public class JavaBase {
         list.push("ee");
         System.out.println(3);
     }
+
+    @Test
+    public void testClass() {
+        Class[] classes = new Class[]{Executor.class};
+        System.out.println(classes[0].getName());
+    }
+
+    @Test
+    public void testInteger() {
+        Integer a = 1111111111;
+        Integer b = 1111111111;
+        System.out.println(a == b);
+    }
 }
+

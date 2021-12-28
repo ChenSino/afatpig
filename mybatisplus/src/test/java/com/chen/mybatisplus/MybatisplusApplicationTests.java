@@ -1,9 +1,11 @@
 package com.chen.mybatisplus;
 
 import com.baomidou.dynamic.datasource.annotation.DS;
+import com.chen.mybatisplus.entity.Address;
+import com.chen.mybatisplus.entity.Hospital;
 import com.chen.mybatisplus.entity.User;
 import com.chen.mybatisplus.entity.enums.GradeEnum;
-import com.chen.mybatisplus.mapper.UserMapper;
+import com.chen.mybatisplus.service.IHospitalService;
 import com.chen.mybatisplus.service.IUserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +16,11 @@ import java.util.List;
 @SpringBootTest
 class MybatisplusApplicationTests {
 
-    @Autowired(required = false)
-    private UserMapper userMapper;
-
     @Autowired
     private IUserService userService;
+
+    @Autowired
+    private IHospitalService hospitalService;
 
     @Test
     @DS("slave_1")
@@ -43,5 +45,26 @@ class MybatisplusApplicationTests {
         user.setGrade(GradeEnum.SECONDARY);
         user.setName("张三那");
         userService.save(user);
+    }
+
+    @Test
+    public void testAssociation() {
+        List<Hospital> hospitals = hospitalService.findHospitalsById(55L);
+        System.out.println(hospitals);
+    }
+
+    @Test
+    public void testCascadeDelete() {
+        hospitalService.removeById(9);
+    }
+
+    @Test
+    public void testCascadeAdd() {
+        Hospital hospital = new Hospital();
+        hospital.setHospitalName("医院名字");
+        Address address = new Address();
+        address.setAddressName("测试地址");
+        hospital.setAddress(address);
+        hospitalService.save(hospital);
     }
 }

@@ -16,12 +16,12 @@ import java.util.Properties;
 public class DynamicProxyTest {
     public static void main(String[] args) {
         //1. 创建一个代理对象，Proxy会自动返回一个代理类，此类是Excutor的子类
-        Executor executor = (Executor) Proxy.newProxyInstance(Executor.class.getClassLoader(), new Class[]{Executor.class}, new LogTimeInvocationHandler(new ExecutorImpl()));
+        Executor executorProxy = (Executor) Proxy.newProxyInstance(Executor.class.getClassLoader(), new Class[]{Executor.class}, new LogTimeInvocationHandler(new ExecutorImpl()));
         //2. 把自动生成的代理对象打印到文件，方便查看分析
         Class<?> proxyClass = Proxy.getProxyClass(Executor.class.getClassLoader(), new Class[]{Executor.class});
         saveClass("$ExecutorProxy0", proxyClass.getInterfaces(), "/home/chenkun/Desktop/");
         //3. 使用代理对象调用
-        int add = executor.add(1, 2);
+        int add = executorProxy.add(1, 2);
     }
 
     /**
