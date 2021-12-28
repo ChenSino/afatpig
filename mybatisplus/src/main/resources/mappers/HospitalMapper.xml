@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chen.mybatisplus.mapper.HospitalMapper">
+    <resultMap id="addressResultMap" type="com.chen.mybatisplus.entity.Address">
+        <id column="address_id" property="addressId"/>
+        <result column="address_name" property="addressName"/>
+        <result column="country_id" property="countryId"/>
+        <result column="province_id" property="provinceId"/>
+        <result column="city_id" property="cityId"/>
+        <result column="county_id" property="countyId"/>
+        <result column="province_id" property="provinceId"/>
+        <result column="city_id" property="cityId"/>
+        <result column="county_id" property="countyId"/>
+        <result column="street_id" property="streetId"/>
+        <result column="detail" property="detail"/>
+        <result column="area_id" property="areaId"/>
+        <result column="office_id" property="officeId"/>
+    </resultMap>
+    <resultMap id="hospitalDeptResultMap" type="com.chen.mybatisplus.entity.HospitalDept">
+        <id column="id" property="id"/>
+        <result column="dept_name" property="deptName"/>
+        <result column="contact_person" property="contactPerson"/>
+        <result column="phone_num" property="phoneNum"/>
+        <result column="position" property="position"/>
+        <result column="email" property="email"/>
+        <result column="hospital_id" property="hospitalId"/>
+        <result column="doctor_num" property="doctorNum"/>
+    </resultMap>
+    <resultMap id="hospitalResultMap" type="com.chen.mybatisplus.entity.Hospital">
+        <id column="id" property="id"/>
+        <id column="uuid" property="uuid"/>
+        <id column="encoded" property="encoded"/>
+        <id column="status" property="status"/>
+        <id column="hospital_remark" property="hospitalRemark"/>
+        <id column="install_quantity" property="installQuantity"/>
+        <id column="info_sources" property="infoSources"/>
+        <id column="rating" property="rating"/>
+        <id column="hospital_rating" property="hospitalRating"/>
+        <id column="hospital_nature" property="hospitalNature"/>
+        <id column="nature" property="nature"/>
+        <id column="hospitalBedNum" property="hospitalBedNum"/>
+        <id column="dailyInspectNum" property="dailyInspectNum"/>
+        <id column="inHospitalPosition" property="inHospitalPosition"/>
+        <id column="inHospitalUseWay" property="inHospitalUseWay"/>
+        <id column="kol" property="kol"/>
+        <id column="competitors" property="competitors"/>
+        <id column="hospitalPhoto" property="hospitalPhoto"/>
+        <id column="lastFollowDate" property="lastFollowDate"/>
+        <id column="createDate" property="createDate"/>
+        <id column="modifyDate" property="modifyDate"/>
+        <id column="deptId" property="deptId"/>
+        <id column="createrId" property="createrId"/>
+        <id column="tenantId" property="tenantId"/>
+        <id column="hospitalType" property="hospitalType"/>
+        <id column="vipCustomerLevel" property="vipCustomerLevel"/>
+        <id column="hospitalLevel" property="hospitalLevel"/>
+        <id column="sonoTag" property="sonoTag"/>
+        <id column="vipCustomerLevel" property="vipCustomerLevel"/>
+        <id column="vipLevel" property="vipLevel"/>
+       <association property="address" column="address_id" javaType="com.chen.mybatisplus.entity.Address"
+                     select="findAddressById">
+        </association>
+        <collection property="hospitalDepts" column="id" javaType="ArrayList"  ofType="com.chen.mybatisplus.entity.HospitalDept" select="findSysHospitalDeptByHospitalId">
+        </collection>
+    </resultMap>
+    <!--测试一对一嵌套查询 -->
+    <select id="findHospitalsById" resultMap="hospitalResultMap" parameterType="long">
+     SELECT * FROM sys_hospital WHERE id = #{id}
+    </select>
+    <select id="findAddressById" resultMap="addressResultMap" parameterType="long" >
+        select * from address where address_id = #{id}
+    </select>
+    <select id="findSysHospitalDeptByHospitalId" resultMap="hospitalDeptResultMap" parameterType="long" >
+        select * from sys_hospital_dept where hospital_id = #{hospitalId}
+    </select>
+</mapper>

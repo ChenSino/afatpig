@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chen.mybatisplus.mapper.AddressMapper">
+    <resultMap id="addressResultMap" type="com.chen.mybatisplus.entity.Address">
+        <id column="address_id" property="addressId"/>
+        <result column="address_name" property="addressName"/>
+        <result column="country_id" property="countryId"/>
+        <result column="province_id" property="provinceId"/>
+        <result column="city_id" property="cityId"/>
+        <result column="county_id" property="countyId"/>
+        <result column="province_id" property="provinceId"/>
+        <result column="city_id" property="cityId"/>
+        <result column="county_id" property="countyId"/>
+        <result column="street_id" property="streetId"/>
+        <result column="detail" property="detail"/>
+        <result column="area_id" property="areaId"/>
+        <result column="office_id" property="officeId"/>
+    </resultMap>
+
+</mapper>
