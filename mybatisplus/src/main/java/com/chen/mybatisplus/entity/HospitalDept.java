@@ -3,6 +3,8 @@ package com.chen.mybatisplus.entity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @author chenkun
  * @Description
@@ -10,7 +12,7 @@ import lombok.Data;
  */
 @TableName("sys_hospital_dept")
 @Data
-public class HospitalDept {
+public class HospitalDept implements Serializable {
     private Long id;
     private String deptName;
     private String contactPerson;
@@ -19,6 +21,7 @@ public class HospitalDept {
     private String email;
     private Long hospitalId;
     private Integer doctorNum;
+    private Boolean delFlag;
 
 
 

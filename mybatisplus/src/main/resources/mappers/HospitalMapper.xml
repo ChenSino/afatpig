@@ -16,6 +16,7 @@
         <result column="detail" property="detail"/>
         <result column="area_id" property="areaId"/>
         <result column="office_id" property="officeId"/>
+        <result column="del_flag" property="delFlag"/>
     </resultMap>
     <resultMap id="hospitalDeptResultMap" type="com.chen.mybatisplus.entity.HospitalDept">
         <id column="id" property="id"/>
@@ -26,6 +27,7 @@
         <result column="email" property="email"/>
         <result column="hospital_id" property="hospitalId"/>
         <result column="doctor_num" property="doctorNum"/>
+        <result column="del_flag" property="delFlag"/>
     </resultMap>
     <resultMap id="hospitalResultMap" type="com.chen.mybatisplus.entity.Hospital">
         <id column="id" property="id"/>
@@ -58,14 +60,15 @@
         <id column="sonoTag" property="sonoTag"/>
         <id column="vipCustomerLevel" property="vipCustomerLevel"/>
         <id column="vipLevel" property="vipLevel"/>
+        <result column="del_flag" property="delFlag"/>
        <association property="address" column="address_id" javaType="com.chen.mybatisplus.entity.Address"
-                     select="findAddressById">
+                     select="findAddressById" >
         </association>
         <collection property="hospitalDepts" column="id" javaType="ArrayList"  ofType="com.chen.mybatisplus.entity.HospitalDept" select="findSysHospitalDeptByHospitalId">
         </collection>
     </resultMap>
     <!--测试一对一嵌套查询 -->
-    <select id="findHospitalsById" resultMap="hospitalResultMap" parameterType="long">
+    <select id="findHospitalById" resultMap="hospitalResultMap" parameterType="long">
      SELECT * FROM sys_hospital WHERE id = #{id}
     </select>
     <select id="findAddressById" resultMap="addressResultMap" parameterType="long" >

@@ -1,0 +1,44 @@
+今天是我坚持写题解的第 98 天！
+
+# 方法、模拟
+
+今天这道题我们可以设置一个变量记录当前中毒持续到的最远时间，下一次的时候判断这个最远时间是否大于其开始时间即可，所以，可以分成两种情况。
+
+假设，给定数据为 `[1,4,5] 和 2`，那么，计算过程如下：
+
+- 第 1 秒攻击，中毒可持续到 3 秒（不包含 3 秒），中毒时间为 2 秒；
+- 第 4 秒攻击，中毒可持续到 6 秒（不包含 6 秒），中毒时间增加到 4 秒；
+- 第 5 秒攻击，中毒可持续到 7 秒（不包含 7 秒），在原来 6 秒的基础上增加了一秒，总的中毒时间为 5 秒。
+
+![image-20211110102320175](https://pic.leetcode-cn.com/1636511364-kGkADe-file_1636511363739)
+
+请看代码：
+
+* java
+
+```java
+class Solution {
+    public int findPoisonedDuration(int[] timeSeries, int duration) {
+        int ans = 0;
+        int to = 0;
+        for (int time : timeSeries) {
+            ans += time + duration - Math.max(to, time);
+            to = time + duration;
+        }
+        return ans;
+    }
+}
+```
+
+- 时间复杂度：$O(n)$。
+- 空间复杂度：$O(1)$。
+
+运行结果如下：
+
+![image-20211110102529297](https://pic.leetcode-cn.com/1636511364-EahFjE-file_1636511363778)
+
+# 最后
+
+**如果对你有帮助，请点个赞吧，谢谢^^**
+
+也可以[关注我](https://leetcode-cn.com/u/tong-zhu/)（公号：彤哥来刷题啦），每日分享题解，一起刷题，一起拿全家桶。

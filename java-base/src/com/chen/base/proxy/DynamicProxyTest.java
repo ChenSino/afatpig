@@ -3,11 +3,9 @@ package com.chen.base.proxy;
 import sun.misc.ProxyGenerator;
 
 import java.io.FileOutputStream;
-import java.lang.reflect.Field;
 import java.lang.reflect.Proxy;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Properties;
 
 /**
  * @author afatpig
@@ -54,15 +52,4 @@ public class DynamicProxyTest {
         }
     }
 
-    /**
-     * 设置保存Java动态代理生成的类文件。
-     *
-     * @throws Exception
-     */
-    public static void saveGeneratedJdkProxyFiles() throws Exception {
-        Field field = System.class.getDeclaredField("props");
-        field.setAccessible(true);
-        Properties props = (Properties) field.get(null);
-        props.put("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
-    }
 }

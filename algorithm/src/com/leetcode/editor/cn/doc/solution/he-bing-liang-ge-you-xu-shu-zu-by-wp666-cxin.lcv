@@ -1,0 +1,38 @@
+### 解题思路
+
+合并2个有序数组，解法如下：
+定义一个临时数组，再定义两个数组的偏移量i和k，初始都为0，
+依次比较nums1[i]是否小于等于nums2[k],如果小于则将nums1的元素放置进临时数组中，i++,比较下一个元素和nums2[k]的大小，
+如果nums2[k]的元素小于nums1[i]的元素，则将nums2[k]元素放进临时数组，k++,
+依次类推，直到 i>m或者k>n,说明此时有一个数组已经比较完毕，则将剩下那个数组的元素依次放入临时数组即可，
+最后将临时数组有序的元素依次放入nums1中。
+
+### 代码
+
+* java
+
+```java
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int[] tmp = new int[m+n];
+        int i = 0,k = 0,offset = 0;
+        while (i<m&&k<n) {
+            if (nums1[i]<=nums2[k]) {
+                tmp[offset++] = nums1[i++];
+            }else{
+                tmp[offset++] = nums2[k++];
+            }
+        }
+        while (i<m) {
+            tmp[offset++] = nums1[i++];
+        }
+        while (k<n) {
+            tmp[offset++] = nums2[k++];
+        }
+        for (int j = 0; j < tmp.length; j++) {
+            nums1[j] = tmp[j];
+        }
+    }
+}
+```
+

@@ -1,0 +1,28 @@
+# 解题思路
+
+dp[i] = max(dp[i-1]+nums[i],num[i])
+res = max(dp)
+
+# 代码
+
+* 
+
+```
+class Solution {
+    func maxSubArray(_ nums: [Int]) -> Int {
+        guard nums.count > 0 else {
+            return 0
+        }
+        
+        var pre = 0
+        var res = nums[0]
+        for num in nums {
+            pre = max(pre + num, num)
+            res = max(res,pre)
+        }
+        
+        return res
+    }
+}
+```
+

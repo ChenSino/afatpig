@@ -4,8 +4,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.chen.mybatisplus.entity.Hospital;
 import org.apache.ibatis.annotations.Mapper;
 
-import java.util.List;
-
 /**
  * @author chenkun
  * @Description
@@ -14,5 +12,5 @@ import java.util.List;
 @Mapper
 public interface HospitalMapper extends BaseMapper<Hospital> {
 
-    List<Hospital> findHospitalsById(Long hospitalId);
+    Hospital findHospitalById(Long hospitalId);
 }

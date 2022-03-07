@@ -1,0 +1,28 @@
+# 二分
+
+找到第一个比目标值大的元素位置即可
+
+* 
+
+```
+class Solution {
+public:
+	int searchInsert(vector<int>& n, int t) {
+		//找到大于等于t的第一个数的位置即可
+		int l = 0, r = n.size(), mid = 0;
+		//[l, r)一个左闭右开的区间
+		while (l < r) {
+			mid = (l + r) / 2;
+			if (n[mid] >= t) {
+				r = mid;
+			}
+			else if (n[mid] < t) {
+				l = mid + 1;
+			}
+		}
+		return r;
+	}
+};
+
+```
+

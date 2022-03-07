@@ -1,0 +1,32 @@
+* 
+
+```
+class Solution {
+public:
+    int countConsistentStrings(string allowed, vector<string>& words) 
+    {
+        int target = stringToInt(allowed);
+        int ans = 0;
+        for (auto& s : words)
+        {
+            int sNum = stringToInt(s);
+            if (sNum <= target) //大于target的数表示字符串中一定存在字符是allowed中没有的
+            {
+                if (((~target) & sNum) == 0)   /*对target进行取反，去除掉target存在的字符，再与sNum进行与运算，查看sNum中是否存在allowed不包含的字符，加上括号，注意运算顺序*/
+                    ans++;
+            }
+        }
+        return ans;    
+    }
+    int stringToInt(string& s)
+    {
+        int res = 0;
+        for (auto& c : s)
+        {
+            res |= (1 << (c - 'a' + 0));    //将字符串转化为一个二进制数，从低位到高位依次表示a、b、c...
+        }
+        return res;
+    }
+};
+```
+

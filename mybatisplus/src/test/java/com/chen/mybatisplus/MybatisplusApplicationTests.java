@@ -47,17 +47,26 @@ class MybatisplusApplicationTests {
         userService.save(user);
     }
 
+    /**
+     * 测试级联查询，包含一对一、一对多
+     */
     @Test
-    public void testAssociation() {
-        List<Hospital> hospitals = hospitalService.findHospitalsById(55L);
-        System.out.println(hospitals);
+    public void testAssociationQuery() {
+        Hospital hospital = hospitalService.findHospitalsById(20L);
+        System.out.println(hospital);
     }
 
+    /**
+     * cascade delete
+     */
     @Test
     public void testCascadeDelete() {
-        hospitalService.removeById(9);
+        hospitalService.cascadeDelete(20L);
     }
 
+    /**
+     * cascade add
+     */
     @Test
     public void testCascadeAdd() {
         Hospital hospital = new Hospital();
