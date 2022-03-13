@@ -4,11 +4,19 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <bean id="sonoscape" class="com.chen.ioc.bean.SonoBean" scope="prototype" init-method="getAge">
-        <property name="age" value="3"></property>
-        <property name="name" value="tom"></property>
-    </bean>
+<!--    <bean id="sonoscape" class="com.chen.ioc.bean.SonoBean" scope="prototype" init-method="getAge">-->
+<!--        <property name="age" value="3"></property>-->
+<!--        <property name="name" value="tom"></property>-->
+<!--    </bean>-->
     <!--    <bean id="bananaBean" class="com.chen.ioc.bean.BananaBean" scope="singleton"/>-->
-    <bean id="myBeanPostProcessor" class="com.chen.ioc.MyBeanPostProcessor" scope="prototype"/>
-    <bean id="banana" class="com.chen.ioc.bean.MyFactoryBean" scope="prototype"/>
+<!--    <bean id="myBeanPostProcessor" class="com.chen.ioc.MyBeanPostProcessor" scope="prototype"/>-->
+<!--    <bean id="banana" class="com.chen.ioc.bean.MyFactoryBean" scope="prototype"/>-->
+
+    <!--测试EntityA 和EntityB循环依赖-->
+    <bean id="entityA" name="entity11,entity22" class="com.chen.ioc.bean.circledependency.EntityA" >
+        <property name="entityB" ref="entityB"/>
+    </bean>
+    <bean id="entityB" class="com.chen.ioc.bean.circledependency.EntityB" >
+        <property name="entityA" ref="entityA"/>
+    </bean>
 </beans>
