@@ -26,6 +26,7 @@ public class HelloController {
 
     @RequestMapping("userinfo")
     public String getUserInfo() {
+        System.out.println("执行目标方法。。。。");
         return "user...";
     }
 

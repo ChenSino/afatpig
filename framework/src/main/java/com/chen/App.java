@@ -1,8 +1,10 @@
 package com.chen;
 
+import com.chen.entity.SysUser;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
 /**
  * @author afatpig
@@ -12,7 +14,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan("com.chen.mapper")
 public class App {
     public static void main(String[] args) {
-        SpringApplication.run(App.class, args);
+        ConfigurableApplicationContext applicationContext = SpringApplication.run(App.class, args);
+        SysUser bean = applicationContext.getBean(SysUser.class);
+        System.out.println(bean);
     }
 
 }

@@ -6,8 +6,10 @@ package com.chen.base.jvm;
  * @date 2022/3/8 下午1:58
  */
 public class Client2 {
-    public static void main(String[] args) throws   InterruptedException {
-        while(true){}
+    public static void main(String[] args) throws InterruptedException {
+        String a = "aaa";
+        String b = "bb";
+        String c = a + b;
     }
 
 }
