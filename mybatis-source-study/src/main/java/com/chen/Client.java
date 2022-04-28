@@ -1,13 +1,17 @@
 package com.chen;
 
+import com.chen.entity.Order;
+import com.chen.mapper.OrderMapper;
+import com.chen.mapper.UserMapper;
 import org.junit.Test;
 import sun.misc.ProxyGenerator;
 
 import java.io.FileOutputStream;
 import java.lang.reflect.Field;
-import java.lang.reflect.Proxy;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -21,10 +25,13 @@ public class Client {
     }
     @Test
     public void testConnect(){
-        User user = MybatisUtil.getSqlSession().getMapper(UserMapper.class).queryByIdUser(2);
-        System.out.println(user);
-        Class<?> proxyClass = Proxy.getProxyClass(UserMapper.class.getClassLoader(), new Class[]{UserMapper.class});
-        saveClass("$ProxyClass",proxyClass.getInterfaces(), "/home/chenkun/Desktop/");
+        HashMap<Object, Object> paramMap = new HashMap<>();
+
+        List<Order> orders = MybatisUtil.getSqlSession().getMapper(OrderMapper.class).queryOrderList(paramMap);
+        System.out.println(orders);
+//        System.out.println(user);
+//        Class<?> proxyClass = Proxy.getProxyClass(UserMapper.class.getClassLoader(), new Class[]{UserMapper.class});
+//        saveClass("$ProxyClass",proxyClass.getInterfaces(), "/home/chenkun/Desktop/");
     }
 
 

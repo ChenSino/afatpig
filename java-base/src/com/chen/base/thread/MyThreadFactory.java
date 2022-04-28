@@ -10,13 +10,10 @@ import java.util.concurrent.ThreadFactory;
 public class MyThreadFactory implements ThreadFactory {
     @Override
     public Thread newThread(Runnable r) {
-        Thread thread = new Thread(null, r, "xxxxxxx" + System.nanoTime());
-//        thread.setUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
-//            @Override
-//            public void uncaughtException(Thread t, Throwable e) {
-//                throw new RuntimeException(e);
-//            }
-//        });
+        Thread thread = new Thread(null, r, System.nanoTime() + "" );
+        thread.setUncaughtExceptionHandler((t, e) -> {
+            System.out.println("异常信息:"+ e.getMessage());
+        });
         return thread;
     }
 }

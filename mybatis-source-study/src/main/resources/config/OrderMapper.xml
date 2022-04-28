@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace属性是名称空间，必须唯一 -->
+<mapper namespace="com.chen.mapper.OrderMapper">
+
+    <!-- resultMap标签:映射实体与表
+         type属性：表示实体全路径名
+         id属性：为实体与表的映射取一个任意的唯一的名字
+    -->
+    <resultMap id="BaseResultMap" type="com.chen.entity.Order">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="order_no" property="orderNo" jdbcType="VARCHAR"/>
+        <result column="order_time" property="orderTime" jdbcType="TIMESTAMP"/>
+        <result column="pay_time" property="payTime" jdbcType="TIMESTAMP"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <collection property="orderDetailList" ofType="com.chen.entity.Detail">
+            <id column="d_id" property="id" jdbcType="INTEGER"/>
+            <result column="d_order_no" property="orderNo" jdbcType="VARCHAR"/>
+            <result column="good_name" property="goodName" jdbcType="VARCHAR"/>
+            <result column="good_id" property="goodId" jdbcType="INTEGER"/>
+            <result column="good_count" property="goodCount" jdbcType="INTEGER"/>
+        </collection>
+        <collection property="pictureList" ofType="com.chen.entity.Picture">
+            <id column="p_id" property="id" jdbcType="INTEGER"/>
+            <result column="p_order_no" property="orderNo" jdbcType="VARCHAR"/>
+            <result column="p_size" property="size" jdbcType="INTEGER"/>
+            <result column="p_desc" property="desc" jdbcType="VARCHAR"/>
+        </collection>
+    </resultMap>
+
+    <select id="queryOrderList" resultMap="BaseResultMap">
+        SELECT
+        o.*,
+        d.id AS d_id,
+        d.order_no AS d_order_no,
+        d.good_name,
+        d.good_id,
+        d.good_count,
+        p.id AS p_id,
+        p.DESC AS p_desc,
+        p.size AS p_size,
+        p.order_no AS p_order_no
+        FROM
+        t_order o
+        LEFT JOIN t_detail d ON d.order_no = o.order_no
+        LEFT JOIN t_picture p ON p.order_no = o.order_no
+    </select>
+
+
+</mapper>

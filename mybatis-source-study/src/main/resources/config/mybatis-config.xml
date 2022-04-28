@@ -43,5 +43,7 @@
 
     <mappers >
         <mapper resource="config/UserMapper.xml"  />
+        <mapper resource="config/DetailMapper.xml"  />
+        <mapper resource="config/OrderMapper.xml"  />
     </mappers>
 </configuration>
