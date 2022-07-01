@@ -18,6 +18,7 @@ public class HandlerChain {
         this.handlers.add(handler);
     }
 
+//    Handler添加的顺序很重要，如果顺序不对，处理的结果可能就不是符合要求的
     public boolean process(Request request) {
         // 依次调用每个Handler:
         for (Handler handler : handlers) {
