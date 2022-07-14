@@ -30,10 +30,17 @@ public class SpringbootSourceStudyApplication {
 
     @GetMapping("test50x")
     @ResponseStatus(value= HttpStatus.INTERNAL_SERVER_ERROR,reason = "服务器内部错误")
-    public String test50x(){
+    public String test50x(HttpServletResponse response){
+        response.addHeader("Access-Control-Allow-Origin", "http://localhost:8080");
         if (true) {
             throw new RuntimeException("测试异常。。");
         }
         return "failed....";
+    }
+
+    @GetMapping("test20x")
+    @ResponseStatus(value= HttpStatus.OK,reason = "ok")
+    public String test20x(){
+        return "ok....";
     }
 }
